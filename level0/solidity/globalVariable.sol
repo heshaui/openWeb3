@@ -107,3 +107,16 @@ contract GlobalVariable {
         signer = ecrecover(keccak256Hash, 10, sha256Hash, ripemd160Hash);
     }
 }
+
+// 验证哈希是否相等
+contract VerifierHash {
+    bytes32 public hash;
+
+    function setHash(uint input) public  {
+        hash = keccak256(abi.encode(input));
+    }
+
+    function verifierHash(uint input) public view returns(bool) {
+        return keccak256(abi.encode(input)) == hash;
+    }
+}
