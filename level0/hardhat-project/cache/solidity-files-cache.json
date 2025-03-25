@@ -1,8 +1,235 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "D:\\workSpace\\Web3\\level0\\hardhat-project\\contracts\\Lock.sol": {
-      "lastModificationDate": 1742884941370,
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/contracts/ERC20MinerReward.sol": {
+      "lastModificationDate": 1742907265866,
+      "contentHash": "98360187bd45fcbb3d122fd943a4af1b",
+      "sourceName": "contracts/ERC20MinerReward.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0 < 0.9.0"
+      ],
+      "artifacts": [
+        "ERC20MinerReward"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1742906392083,
+      "contentHash": "227a6eb2225701c12d9c959b758b6333",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol",
+        "../../interfaces/draft-IERC6093.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "lastModificationDate": 1742906392071,
+      "contentHash": "267d92fe4de67b1bdb3302c08f387dbf",
+      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC1155Errors",
+        "IERC20Errors",
+        "IERC721Errors"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1742906392065,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1742906392114,
+      "contentHash": "8f19f64d2adadf448840908bbaf431c8",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "lastModificationDate": 1742906392114,
+      "contentHash": "794db3115001aa372c79326fcfd44b1f",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/contracts/Lock.sol": {
+      "lastModificationDate": 1742904824444,
       "contentHash": "7eee587c347fe6b1de50c96688cb9477",
       "sourceName": "contracts/Lock.sol",
       "solcConfig": {
@@ -37,9 +264,9 @@
         "Lock"
       ]
     },
-    "D:\\workSpace\\Web3\\level0\\hardhat-project\\contracts\\Shipping.sol": {
-      "lastModificationDate": 1742895245887,
-      "contentHash": "21cd3d0e5f67c757f264a29d92403a7d",
+    "/Users/heshuaishuai/Project/web3/openWeb3/level0/hardhat-project/contracts/Shipping.sol": {
+      "lastModificationDate": 1742904824445,
+      "contentHash": "b3d38a9831f3abd59ca009bec94b130a",
       "sourceName": "contracts/Shipping.sol",
       "solcConfig": {
         "version": "0.8.28",
