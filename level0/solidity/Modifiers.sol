@@ -7,6 +7,7 @@ onlyOwner 是一个修饰符，限制只有合约拥有者才能调用 changeOwn
 _ 表示原函数的执行位置。
  */
 contract Modifiers {
+    address public owner;
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the contract owner");
         _;
