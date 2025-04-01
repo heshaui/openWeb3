@@ -28,7 +28,7 @@ contract Type {
     bytes32 public b32 = hex'1000';
     enum Status {
         Pendding, 
-        Fulfilled，
+        Fulfilled,
         Rejected
     }
     Status public orderStatus = Status.Pendding;
