@@ -22,7 +22,8 @@ const abiERC20 = [
 const addressDAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
 const contractDAI = new Contract(addressDAI, abiERC20, provider)
 
-const main = async() => {
+// 只读合约
+const readonly = async() => {
     // 1. 读取WETH合约的链上信息（WETH abi）
     const nameWETH = await contractWETH.name()
     const symbolWETH = await contractWETH.symbol()
@@ -47,4 +48,4 @@ const main = async() => {
     const balanceDAI = await contractDAI.balanceOf('vitalik.eth')
     console.log(`Vitalik持仓: ${formatEther(balanceDAI)}\n`)
 }
-main()
+readonly()
