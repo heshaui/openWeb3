@@ -1,0 +1,11 @@
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    box-shadow: 0 0 2px #ccc;
+    padding: 0 30px;
+}
+.pageHeader h3 {
+    font-size: 20px;
+}
