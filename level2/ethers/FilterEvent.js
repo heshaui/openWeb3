@@ -1,28 +1,36 @@
-const { JsonRpcProvider, Contract, formatUnits, getBigInt } = require('ethers')
+const { JsonRpcProvider, Contract, getBigInt, formatUnits } = require("ethers");
+const url = 'https://eth-mainnet.g.alchemy.com/v2/whHK1LIqevgkmwX1Ko3MUMmwq2mCXmp_'
+// 提供商
+const provider = new JsonRpcProvider(url);
 
-// provider
-const url = 'https://sepolia.infura.io/v3/68187abecabe41509aab9e7c6c932204'
-const provider = new JsonRpcProvider(url)
+// 合约
+const abiUSDT = [
+    "event Transfer(address indexed from, address indexed to, uint value)",
+    "function balanceOf(address) public view returns(uint)",
+  ];
+const addressUSDT = '0xdac17f958d2ee523a2206206994597c13d831ec7'
+const contractUSDT = new Contract(addressUSDT, abiUSDT, provider)
 
-// contract
-const abiETH = [
-    "event Transfer(address indexed from, address indexed to, uint amount)"
-];
-const addressETH = '0x7b79995e5f793a07bc00c21412e50ecae098e7f9'
-const contractETH = new Contract(addressETH, abiETH, provider)
+const balanceAddress = '0x28C6c06298d514Db089934071355E5743bf21d60'
 
 async function main() {
-	const blockNumber = await provider.getBlockNumber()
-	console.log(`当前区块号：${blockNumber}`)
-	// 检索合约const transferEvents = await contract.queryFilter('事件名', 起始区块, 结束区块)
-	const transferEvents = await contractETH.queryFilter('Transfer', blockNumber - 10, blockNumber )
-	console.log(`'检索合约：${JSON.stringify(transferEvents[0])}`)
-	const onceEvent = transferEvents[0]
-	// 解析事件
-	const amount = formatUnits(getBigInt(onceEvent.args.amount), 'ether')
-	const from = onceEvent.args.from
-	const to = onceEvent.args.to
-	console.log(`from:${from}->amount:${amount}->to:${to}`)
-}
+    const balance = await contractUSDT.balanceOf(balanceAddress)
+    console.log(`当前余额：${formatUnits(getBigInt(balance), 6)}USDT`)
 
+    // 创建过滤器监听转入
+    const filterIn = contractUSDT.filters.Transfer(null, balanceAddress)
+    console.log(`转入详情：${JSON.stringify(filterIn)}`)
+    
+    // 监听转入事件
+    contractUSDT.on(filterIn, (from, to, value) => {
+      console.log(`持续监听转入：from:${from} --> to:${to} --> value: ${formatUnits(getBigInt(value), 6)}`)
+    })
+
+    // 创建过滤器监听转出
+    const filterOut = contractUSDT.filters.Transfer(balanceAddress)
+    console.log(`转出详情：${JSON.stringify(filterOut)}`)
+    contractUSDT.on(filterOut, (from, to, value) => {
+      console.log(`持续监听转出：from:${from} --> to:${to} --> value: ${formatUnits(getBigInt(value), 6)}`)
+    })
+}
 main()
