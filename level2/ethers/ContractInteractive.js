@@ -5,7 +5,7 @@ const url = 'https://sepolia.infura.io/v3/68187abecabe41509aab9e7c6c932204'
 const provider = new JsonRpcProvider(url);
 
 //利用私钥和provider创建wallet对象
-const privateKey = '94b39188d38b0caba2ec134595b65748e35ccdad96718597b81837045cb03a64';
+const privateKey = '0f03a73988c990c2333bbbcd99d442377fedbe48083a8a9c4426ace223c33e5d';
 const wallet = new Wallet(privateKey, provider);
 
 // contract
