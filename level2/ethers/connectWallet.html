@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel 用于 JSX 编译 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ethers.js v6 -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    const {useState, useEffect} = React;
+    const users = {}
+    function App() {
+        const [balance, setBalance] = useState()
+        const [account, setAccount] = useState()
+        const [chainId, setChainId] = useState()
+        const [nonce, setNonce] = useState()
+        const [status, setStatus] = useState()
+
+        /**
+         * 通过地址获取后端生成的随机数 nonce，用于签名
+         * @param address  用户地址
+         * @returns {number} 返回随机数 nonce
+         *
+         * 这个方法充当后台服务，从后台中获取需要签名的数据
+         */
+        function auth(address) {
+            let user = users[address]
+            if (!user) {
+                user = {
+                    address,
+                    nonce: Math.floor(Math.random() * 10000000)
+                }
+            } else {
+                const nonce = Math.floor(Math.random() * 10000000)
+                user.nonce = nonce
+            }
+            users[address] = user
+            return user.nonce
+        }
+
+        /**
+         * 验证用户签名是否正确
+         * @param address   用户地址
+         * @param signature 签名数据
+         * @returns {boolean} 返回签名是否正确
+         *
+         * 这个方法充当后台服务，后台验证签名正确后，就返回相关登录态数据，完成登录流程
+         */
+        function verify(address, signature) {
+            let signValid = false
+            console.log(`address: ${address}`)
+            //从数据库中取出nonce
+            let nonce = users[address].nonce
+            console.log(`nonce: ${nonce}`)
+            //验证对nonce进行签名的地址
+            const decodedAddress = ethers.verifyMessage(nonce.toString(), signature.toString())
+            console.log(`decodedAddress: ${decodedAddress}`)
+            //比较地址和签名的地址是否一致
+            if (address.toLowerCase() === decodedAddress.toLowerCase()) {
+                signValid = true
+                //出于安全原因，更改nonce，防止下次直接使用相同的nonce进行登录
+                users[address].nonce = Math.floor(Math.random() * 10000000)
+            }
+            return signValid
+        }
+
+        const connectWallet = async() => {
+            if (!window.ethereum) return alert('place install Metamask')
+            const provider = new ethers.BrowserProvider(window.ethereum)
+            // 读取账户
+            const accounts = await provider.send("eth_requestAccounts", []);
+            setAccount(accounts[0])
+            // 获取 signer 和地址
+            const signer = await provider.getSigner()
+            const address = await signer.getAddress()
+            const balanceETH = await provider.getBalance(address)
+            setBalance(ethers.formatEther(balanceETH))
+            // chainId
+            const network = await provider.getNetwork()
+            setChainId(network.chainId.toString())
+
+            //从后台获取需要进行签名的数据
+            const nonce = auth(address);
+            setNonce(nonce)
+
+            // 签名
+            try {
+                console.log("开始签名:", nonce)
+                const signature = await signer.signMessage(nonce.toString())
+                console.log("签名完成:", signature)
+                const signStatus = verify(address, signature);
+                setStatus(signStatus)
+            } catch (err) {
+                console.log(err)
+            }
+            
+        }
+        return (
+            <div>
+               <button onClick={connectWallet}>Connect Wallet</button> 
+               <p>账户地址：{account}</p>
+               <p>账户余额：{balance}</p>
+               <p>ChainId: {chainId}</p>
+               <p>nonce: {nonce}</p>
+               <p>是否签名成功：{status}</p>
+            </div>
+        )
+    }
+    const rootDom = document.getElementById('root')
+    const root = ReactDOM.createRoot(rootDom)
+    root.render(<App />)
+</script>
+</html>
