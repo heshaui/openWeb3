@@ -1,0 +1,72 @@
+.container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+  width: 100%;
+}
+
+.currentChain {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.currentChain h3, .chainList h3 {
+  color: #333;
+  margin: 0 0 16px 0;
+  font-size: 1.2rem;
+}
+
+.chainInfo {
+  display: flex;
+  gap: 24px;
+  color: #666;
+}
+
+.chainInfo span {
+  background: #f5f5f5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chainButton {
+  background: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.chainButton:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.chainButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .chainInfo {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

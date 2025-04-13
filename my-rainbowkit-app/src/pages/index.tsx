@@ -2,7 +2,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import PageHeader from '../components/PageHeader';
 import Wallet from '../components/Wallet';
 import SwitchChain from '../components/SwitchChains';
 
@@ -17,7 +16,6 @@ const Home: NextPage = () => {
         />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <PageHeader />
       <main className={styles.main}>
         <Wallet />
         <SwitchChain />
